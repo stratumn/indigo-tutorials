@@ -48,7 +48,7 @@ module.exports = {
   },
 
   /**
-   * Complete an item in the TODO list.
+   * Completes an item in the TODO list.
    * @param {string} id - the unique identifier of the item
    */
   completeItem: function(id) {
