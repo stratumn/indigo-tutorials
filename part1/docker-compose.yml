@@ -1,0 +1,26 @@
+version: '2'
+services:
+  agent:
+    build:
+      context: ./agent
+    image: stratumn/todo-tutorials-part1-agent-js
+    env_file:
+    - ./config/common.env
+    - ./config/common.secret.env
+    volumes:
+    - ./agent:/src/server
+    depends_on:
+    - store
+  store:
+    image: stratumn/tmstore:0.0.7-dev
+    env_file:
+    - ./config/common.env
+    - ./config/common.secret.env
+    command: [tmstore, -endpoint, "tcp://tmapp:46657"]
+    depends_on:
+    - tmapp
+  tmapp:
+    image: stratumn/filetmpop:0.0.7-dev
+    env_file:
+    - ./config/common.env
+    - ./config/common.secret.env
