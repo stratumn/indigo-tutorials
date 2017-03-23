@@ -1,12 +1,12 @@
 var mockAgent = require('stratumn-mock-agent').mockAgent;
-var transitions = require('../lib/actions');
+var actions = require('../lib/actions');
 
-describe('transitions', function() {
+describe('actions', function() {
 
+  // Mock our agent before every test.
   var map;
-
   beforeEach(function() {
-    map = mockAgent(transitions);
+    map = mockAgent(actions);
   });
 
   describe('#init()', function() {
