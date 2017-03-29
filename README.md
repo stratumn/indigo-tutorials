@@ -4,7 +4,7 @@ This repo contains the source code for the TODO list tutorial series.
 
 A branch exists for each part of the tutorials:
 
-* [Part 1: A process for TODO lists](tree/part1)
+* [Part 1: A process for TODO lists](/stratumn/todo-tutorials/tree/part1)
 
 Copyright 2017 Stratumn SAS.
 
