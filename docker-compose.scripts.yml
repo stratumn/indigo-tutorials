@@ -1,0 +1,10 @@
+version: '2'
+services:
+  genkey:
+    build:
+      context: ./scripts
+    command: ['node', './lib/genkey.js']
+  sign:
+    build:
+      context: ./scripts
+    command: ['node', './lib/sign.js']

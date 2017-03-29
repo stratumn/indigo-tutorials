@@ -16,6 +16,9 @@
     "down:test": "strat run compose:test down; rm -rf tendermint.test",
     "test": "strat run build:test && strat run tm:init:test && strat run compose:test run agent npm test",
     "pull": "strat run compose pull",
-    "push": "strat run compose push"
+    "push": "strat run compose push",
+    "compose:scripts": "docker-compose -p todo-script -f docker-compose.scripts.yml",
+    "genkey": "strat run compose:scripts run genkey",
+    "sign": "strat run compose:scripts run sign"
   }
 }
