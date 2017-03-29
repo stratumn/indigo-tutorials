@@ -2,3 +2,4 @@ segments
 tendermint
 node_modules
 *.secret.env
+.DS_Store

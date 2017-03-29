@@ -3,7 +3,7 @@ services:
   agent:
     build:
       context: ./agent
-    image: stratumn/todo-tutorials-part2-agent-js
+    image: stratumn/todo-agent-js
     env_file:
     - ./config/common.env
     - ./config/common.secret.env

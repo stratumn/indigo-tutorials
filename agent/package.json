@@ -1,7 +1,7 @@
 {
-  "name": "todo-tutorials-part2",
+  "name": "todo",
   "version": "0.1.0",
-  "description": "Part 2 of the TODO tutorial series.",
+  "description": "TODO tutorial series.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L -i test -i segments -i node_modules",

@@ -21,4 +21,4 @@ networks:
   default:
     driver: bridge
     driver_opts:
-        name: todo-tutorials-part2_test
+        name: todo_test
