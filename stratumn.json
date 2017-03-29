@@ -19,6 +19,8 @@
     "push": "strat run compose push",
     "compose:scripts": "docker-compose -p todo-script -f docker-compose.scripts.yml",
     "genkey": "strat run compose:scripts run genkey",
-    "sign": "strat run compose:scripts run sign"
+    "signadduser": "strat run compose:scripts run signadduser",
+    "signadditem": "strat run compose:scripts run signadditem",
+    "signcompleteitem": "strat run compose:scripts run signcompleteitem"
   }
 }
