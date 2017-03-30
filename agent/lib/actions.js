@@ -10,9 +10,13 @@ module.exports = {
       return this.reject('title required');
     }
 
-    // Save the title and initialize an empty map of list items.
-    this.state.title = title;
-    this.state.items = {};
+    // Save the list info.
+    this.state = {
+      title: title
+    };
+
+    // Set the `list` tag.
+    this.meta.tags = ['list'];
 
     // Create the first segment.
     this.append();
@@ -20,28 +24,26 @@ module.exports = {
 
   /**
    * Adds an item to the TODO list.
-   * @param {string} id - a unique identifier for the item
    * @param {string} description - a description of the item
    */
-  addItem: function(id, description) {
+  addItem: function(description) {
     // Validate parameters.
-    if (!id) {
-      return this.reject('ID required');
-    }
     if (!description) {
       return this.reject('description required');
     }
 
-    // Make sure ID doesn't already exist.
-    if (this.state.items[id]) {
-      return this.reject('item already exists')
+    // Make sure we are appending a list segment. It should have the `list` tag.
+    if (this.meta.tags.indexOf('list') < 0) {
+      return this.reject('not a list')
     }
 
-    // Insert new item.
-    this.state.items[id] = {
-      description: description,
-      complete: false
+    // Save the item info.
+    this.state = {
+      description: description
     };
+
+    // Set the `item` tag.
+    this.meta.tags = ['item'];
 
     // Append the new segment.
     this.append();
@@ -49,29 +51,18 @@ module.exports = {
 
   /**
    * Completes an item in the TODO list.
-   * @param {string} id - the unique identifier of the item
    */
-  completeItem: function(id) {
-    // Validate parameter.
-    if (!id) {
-      return this.reject('ID required');
+  completeItem: function() {
+    // Make sure we are appending an item segment. It should have the `item` tag.
+    if (this.meta.tags.indexOf('item') < 0) {
+      return this.reject('not an item')
     }
 
-    // Find the item.
-    var item = this.state.items[id];
+    // We don't need anything in the state.
+    this.state = {};
 
-    // Make sure the item exists.
-    if (!item) {
-      return this.reject('item not found');
-    }
-
-    // Make sure the item isn't already complete.
-    if (item.complete) {
-      return this.reject('item already complete')
-    }
-
-    // Update item.
-    item.complete = true;
+    // Set the `completion` tag.
+    this.meta.tags = ['completion'];
 
     // Append the new segment.
     this.append();

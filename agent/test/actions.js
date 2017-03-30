@@ -11,12 +11,12 @@ describe('actions', function() {
 
   describe('#init()', function() {
 
-    it('sets the state correctly', function() {
+    it('sets the state and meta correctly', function() {
       return map
         .init('TODO')
         .then(function(link) {
           link.state.title.should.be.exactly('TODO');
-          link.state.items.should.be.an.Object();
+          link.meta.tags.should.deepEqual(['list']);
         });
     });
 
@@ -35,33 +35,17 @@ describe('actions', function() {
 
   describe('#addItem()', function() {
 
-    it('updates the state correctly', function() {
+    it('updates the state and meta correctly', function() {
       return map
         .init('TODO')
         .then(function(link) {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem('Do laundry!');
         })
         .then(function(link) {
-          link.state.items.should.deepEqual({
-            laundry: {
-              description: 'Do laundry!',
-              complete: false
-            }
+          link.state.should.deepEqual({
+            description: 'Do laundry!'
           });
-        });
-    });
-
-    it('requires an ID', function() {
-      return map
-        .init('TODO!')
-        .then(function(link) {
-          return map.addItem(null, 'Do laundry!');
-        })
-        .then(function(link) {
-          throw new Error('link should not have been created');
-        })
-        .catch(function(err) {
-          err.message.should.be.exactly('ID required');
+          link.meta.tags.should.deepEqual(['item']);
         });
     });
 
@@ -69,7 +53,7 @@ describe('actions', function() {
       return map
         .init('TODO!')
         .then(function(link) {
-          return map.addItem('laundry');
+          return map.addItem();
         })
         .then(function(link) {
           throw new Error('link should not have been created');
@@ -79,20 +63,20 @@ describe('actions', function() {
         });
     });
 
-    it('requires a unique ID', function() {
+    it('must append a list segment', function() {
       return map
         .init('TODO!')
         .then(function(link) {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem('Do laundry!');
         })
         .then(function(link) {
-          return map.addItem('laundry', 'Do laundry again!');
+          return map.addItem('Do laundry again!');
         })
         .then(function(link) {
           throw new Error('link should not have been created');
         })
         .catch(function(err) {
-          err.message.should.be.exactly('item already exists');
+          err.message.should.be.exactly('not a list');
         });
     });
 
@@ -100,26 +84,22 @@ describe('actions', function() {
 
   describe('#completeItem()', function() {
 
-    it('updates the state correctly', function() {
+    it('updates the state and meta correctly', function() {
       return map
         .init('TODO')
         .then(function(link) {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem('Do laundry!');
         })
         .then(function(link) {
-          return map.completeItem('laundry');
+          return map.completeItem();
         })
         .then(function(link) {
-          link.state.items.should.deepEqual({
-            laundry: {
-              description: 'Do laundry!',
-              complete: true
-            }
-          });
+          link.state.should.deepEqual({});
+          link.meta.tags.should.deepEqual(['completion']);
         });
     });
 
-    it('requires an ID', function() {
+    it('must append an item segment', function() {
       return map
         .init('TODO!')
         .then(function(link) {
@@ -129,41 +109,7 @@ describe('actions', function() {
           throw new Error('link should not have been created');
         })
         .catch(function(err) {
-          err.message.should.be.exactly('ID required');
-        });
-    });
-
-    it('requires the item to exist', function() {
-      return map
-        .init('TODO!')
-        .then(function(link) {
-          return map.completeItem('laundry');
-        })
-        .then(function(link) {
-          throw new Error('link should not have been created');
-        })
-        .catch(function(err) {
-          err.message.should.be.exactly('item not found');
-        });
-    });
-
-    it('requires the item not to be complete', function() {
-      return map
-        .init('TODO!')
-        .then(function(link) {
-          return map.addItem('laundry', 'Do laundry!');
-        })
-        .then(function(link) {
-          return map.completeItem('laundry');
-        })
-        .then(function(link) {
-          return map.completeItem('laundry');
-        })
-        .then(function(link) {
-          throw new Error('link should not have been created');
-        })
-        .catch(function(err) {
-          err.message.should.be.exactly('item already complete');
+          err.message.should.be.exactly('not an item');
         });
     });
 
