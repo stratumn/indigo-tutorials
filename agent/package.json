@@ -10,12 +10,12 @@
   "author": "Stephan Florquin",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "bitcore-lib": "^0.13.7",
+    "bitcore-message": "^1.0.4",
     "express": "^4.14.0",
     "stratumn-agent": "^0.13.0"
   },
   "devDependencies": {
-    "bitcore-lib": "^0.13.7",
-    "bitcore-message": "^1.0.4",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "should": "^10.0.0",
