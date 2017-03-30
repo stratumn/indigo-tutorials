@@ -4,15 +4,7 @@ services:
     build:
       context: ./scripts
     command: ['node', './lib/genkey.js']
-  signadduser:
+  sign:
     build:
       context: ./scripts
-    command: ['node', './lib/signAddUser.js']
-  signadditem:
-    build:
-      context: ./scripts
-    command: ['node', './lib/signAddItem.js']
-  signcompleteitem:
-    build:
-      context: ./scripts
-    command: ['node', './lib/signCompleteItem.js']
+    command: ['node', './lib/sign.js']

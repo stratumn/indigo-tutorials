@@ -1,9 +1,10 @@
 var bitcore = require('bitcore-lib');
 
+// Generate random private key.
 var privateKey = new bitcore.PrivateKey();
-var publicKey = bitcore.PublicKey(privateKey);
+
+// Derive address from the private key.
 var address = privateKey.toAddress();
 
 console.log('Address:\t', address.toString());
-console.log('Public key:\t', publicKey.toString());
 console.log('Private key:\t', privateKey.toString());
