@@ -63,7 +63,7 @@ module.exports = {
 
     // Make sure we are appending a list segment. It should have the `list` tag.
     if (this.meta.tags.indexOf('list') < 0) {
-      return this.reject('not a list')
+      return this.reject('not a list');
     }
 
     // This is what must be signed by the admin.
@@ -100,7 +100,7 @@ module.exports = {
 
     // Make sure we are appending an item segment. It should have the `item` tag.
     if (this.meta.tags.indexOf('item') < 0) {
-      return this.reject('not an item')
+      return this.reject('not an item');
     }
 
     // This is what must be signed by the assignee.
