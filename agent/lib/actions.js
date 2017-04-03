@@ -5,6 +5,7 @@ var Message = require('bitcore-message');
  * @param {string} message - the message that was signed
  * @param {string} address - the address of the signee
  * @param {string} signature - the signature
+ * @returns {bool} whether the signature is valid
  */
 function verify(message, address, signature) {
   try {
