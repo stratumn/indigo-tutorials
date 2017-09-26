@@ -1,12 +1,12 @@
-var mockAgent = require('stratumn-mock-agent').mockAgent;
-var actions = require('../lib/actions');
+var processify = require('stratumn-agent').processify;
+var actions = require('../lib/actions-todo');
 
-describe('actions', function() {
+describe('actions-todo', function() {
 
-  // Mock our agent before every test.
+  // Transform our actions into a process before every test
   var map;
   beforeEach(function() {
-    map = mockAgent(actions);
+    map = processify(actions);
   });
 
   describe('#init()', function() {

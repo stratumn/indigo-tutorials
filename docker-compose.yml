@@ -12,7 +12,7 @@ services:
     depends_on:
     - store
   store:
-    image: stratumn/tmstore:0.0.7-dev
+    image: stratumn/tmstore:0.1.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -20,7 +20,9 @@ services:
     depends_on:
     - tmapp
   tmapp:
-    image: stratumn/filetmpop:0.0.7-dev
+    image: stratumn/filetmpop:0.1.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
+    volumes:
+    - ./validation:/data/validation
