@@ -1,7 +1,7 @@
 version: '2'
 services:
   agentui:
-    image: stratumn/agent-ui:v0.2.6
+    image: stratumn/agent-ui:v0.5.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -10,7 +10,7 @@ services:
     ports:
     - "4000:4000"
   indigoexplorer:
-    image: stratumn/indigo-explorer:v0.3.0
+    image: stratumn/indigo-explorer:v0.8.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env

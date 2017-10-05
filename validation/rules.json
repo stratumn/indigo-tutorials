@@ -1,0 +1,36 @@
+{
+    "todo": [
+        {
+            "type": "init",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        },
+        {
+            "type": "addItem",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "description"
+                ]
+            }
+        }
+    ]
+}
