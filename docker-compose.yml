@@ -24,5 +24,6 @@ services:
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
+    command: [filetmpop, -home, "/data/tendermint"]
     volumes:
     - ./validation:/data/validation

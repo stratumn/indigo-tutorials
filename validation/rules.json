@@ -31,6 +31,20 @@
                     "description"
                 ]
             }
+        },
+        {
+            "type": "completeItem",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id"
+                ]
+            }
         }
     ]
 }
