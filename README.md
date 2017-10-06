@@ -1,6 +1,6 @@
-# todo
+# Warehouse management
 
-TODO tutorial series.
+Warehouse management tutorial (multiple processes).
 
 ## Requirements
 
@@ -74,13 +74,13 @@ The agent's files are in the `./agent` directory.
 
 ### Workflow actions
 
-The actions are defined in `./agent/lib/actions-todo.js`.
+The actions are defined in `./agent/lib/actions-goods.js` and `./agent/lib/actions-employees.js`.
 You can arrange your actions in different files then `require()` them if you
 want.
 
 ### Tests
 
-The tests are defined in `./agent/test/actions-todo.js`. You can also arrange them in
+The tests are defined in `./agent/test/actions-goods.js` and `./agent/test/actions-employees.js`. You can also arrange them in
 different files if you prefer.
 
 During tests, the same store and fossilizer types used in development are

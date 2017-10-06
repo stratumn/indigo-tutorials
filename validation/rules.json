@@ -1,30 +1,78 @@
 {
-    "todo": [
+    "goods": [
         {
             "type": "init",
             "schema": {
                 "type": "object",
                 "properties": {
-                    "title": {
+                    "warehouse": {
                         "type": "string"
                     }
                 },
                 "required": [
-                    "title"
+                    "warehouse"
                 ]
             }
         },
         {
-            "type": "addItem",
+            "type": "storeItem",
             "schema": {
                 "type": "object",
                 "properties": {
+                    "id": {
+                        "type": "string"
+                    },
                     "description": {
                         "type": "string"
                     }
                 },
                 "required": [
+                    "id",
                     "description"
+                ]
+            }
+        }
+    ],
+    "employees": [
+        {
+            "type": "init",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "warehouse": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "warehouse"
+                ]
+            }
+        },
+        {
+            "type": "enter",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "employee": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "employee"
+                ]
+            }
+        },
+        {
+            "type": "leave",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "employee": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "employee"
                 ]
             }
         }

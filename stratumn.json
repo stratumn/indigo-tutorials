@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "warehouse",
   "author": "Stephan Florquin",
-  "description": "TODO tutorial series.",
+  "description": "Warehouse tutorial series.",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "init": "strat run tm:init",

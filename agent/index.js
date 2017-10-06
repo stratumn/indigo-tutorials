@@ -6,7 +6,8 @@ var Agent = require('stratumn-agent');
 var plugins = Agent.plugins;
 
 // Load actions.
-var actions = require('./lib/actions-todo');
+var actions_goods = require('./lib/actions-goods');
+var actions_employees = require('./lib/actions-employees');
 
 // Create an HTTP store client to save segments.
 // Assumes an HTTP store server is available on env.STRATUMN_STORE_URL or http://store:5000.
@@ -22,10 +23,13 @@ var agent = Agent.create({
 
 // Adds a process from a name, its actions, the store client, and the fossilizer client.
 // As many processes as one needs can be added. A different storeHttpClient and fossilizerHttpClient may be used.
-agent.addProcess("todo", actions, storeHttpClient, fossilizerHttpClient, {
-  salt: process.env.STRATUMN_SALT || Math.random(), // change to a unique salt
+agent.addProcess('goods', actions_goods, storeHttpClient, fossilizerHttpClient, {
   // plugins you want to use
-  plugins: [plugins.agentUrl(agentUrl), plugins.localTime, plugins.actionArgs, plugins.stateHash]
+  plugins: [plugins.agentUrl(agentUrl), plugins.actionArgs, plugins.stateHash]
+});
+agent.addProcess('employees', actions_employees, storeHttpClient, fossilizerHttpClient, {
+  // plugins you want to use
+  plugins: [plugins.agentUrl(agentUrl), plugins.actionArgs, plugins.stateHash]
 });
 
 // Creates an HTTP server for the agent with CORS enabled.

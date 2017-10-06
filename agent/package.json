@@ -1,7 +1,7 @@
 {
-  "name": "todo",
+  "name": "warehouse",
   "version": "0.1.0",
-  "description": "TODO tutorial series.",
+  "description": "Warehouse tutorial series.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon -L -i test -i segments -i node_modules",
