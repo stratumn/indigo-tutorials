@@ -4,12 +4,7 @@ module.exports = {
    * Creates a new TODO list.
    * @param {string} title - a name for the list
    */
-  init: function(title) {
-    // Validate parameters.
-    if (!title) {
-      return this.reject('title required');
-    }
-
+  init: function (title) {
     // Save the list info.
     this.state = {
       title: title
@@ -26,12 +21,7 @@ module.exports = {
    * Adds an item to the TODO list.
    * @param {string} description - a description of the item
    */
-  addItem: function(description) {
-    // Validate parameters.
-    if (!description) {
-      return this.reject('description required');
-    }
-
+  addItem: function (description) {
     // Make sure we are appending a list segment. It should have the `list` tag.
     if (this.meta.tags.indexOf('list') < 0) {
       return this.reject('not a list');
@@ -52,7 +42,7 @@ module.exports = {
   /**
    * Completes an item in the TODO list.
    */
-  completeItem: function() {
+  completeItem: function () {
     // Make sure we are appending an item segment. It should have the `item` tag.
     if (this.meta.tags.indexOf('item') < 0) {
       return this.reject('not an item');

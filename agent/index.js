@@ -15,15 +15,17 @@ var storeHttpClient = Agent.storeHttpClient(process.env.STRATUMN_STORE_URL || 'h
 var fossilizerHttpClient = null;
 
 // Creates an agent
+var agentUrl = process.env.STRATUMN_AGENT_URL || 'http://localhost:3000';
 var agent = Agent.create({
-  agentUrl: process.env.STRATUMN_AGENT_URL || 'http://localhost:3000',   // the agent needs to know its root URL
+  agentUrl: agentUrl,
 });
 
 // Adds a process from a name, its actions, the store client, and the fossilizer client.
 // As many processes as one needs can be added. A different storeHttpClient and fossilizerHttpClient may be used.
 agent.addProcess("todo", actions, storeHttpClient, fossilizerHttpClient, {
   salt: process.env.STRATUMN_SALT || Math.random(), // change to a unique salt
-  plugins: [plugins.localTime, plugins.actionArgs]  // pick any plugins from src/plugins or develop your own - order matters
+  // plugins you want to use
+  plugins: [plugins.agentUrl(agentUrl), plugins.localTime, plugins.actionArgs, plugins.stateHash]
 });
 
 // Creates an HTTP server for the agent with CORS enabled.
@@ -36,7 +38,10 @@ app.disable('x-powered-by');
 // Mount agent on the root path of the server.
 app.use('/', agentHttpServer);
 
-// Start the server
-app.listen(3000, function() {
-  console.log('Listening on ' + this.address().port);
+// Create server by binding app and websocket connection
+const server = Agent.websocketServer(app, storeHttpClient);
+
+// Start the server.
+server.listen(3000, function() {
+  console.log('Listening on :' + this.address().port);
 });

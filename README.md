@@ -74,15 +74,14 @@ The agent's files are in the `./agent` directory.
 
 ### Workflow actions
 
-The actions are defined in `./agent/lib/actions.js`.
+The actions are defined in `./agent/lib/actions-todo.js`.
 You can arrange your actions in different files then `require()` them if you
 want.
 
 ### Tests
 
-The tests are defined in `./agent/test/actions`. You can also arrange them in
+The tests are defined in `./agent/test/actions-todo.js`. You can also arrange them in
 different files if you prefer.
-The `stratumn-mock-agent` module is preinstalled for easy testing of actions.
 
 During tests, the same store and fossilizer types used in development are
 launched. They are started in a different namespace so that they don't conflict
@@ -105,6 +104,11 @@ during development.
 
 The variables defined in `test.env` and `test.secret.env` are only accessible
 during testing.
+
+### Validation
+
+There is a json file in `./validation` named `rules.json`. 
+It contains json schema validation rules that are executed for each action your processes handle.
 
 ## License
 
