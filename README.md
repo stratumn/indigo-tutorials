@@ -1,4 +1,4 @@
-# TODO list tutorials
+# Indigo Framework tutorials
 
 This repo contains the source code for the TODO list tutorial series.
 
@@ -6,6 +6,7 @@ A branch exists for each part of the tutorials:
 
 * [Part 1: A process for TODO lists](https://github.com/stratumn/todo-tutorials/tree/part1)
 * [Part 2: Thinking non-linearly](https://github.com/stratumn/todo-tutorials/tree/part2)
+* [Part 3: Handling multiple processes](https://github.com/stratumn/todo-tutorials/tree/part3)
 
 # How to update before a release:
 
