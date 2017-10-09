@@ -35,6 +35,20 @@ describe('actions-employees', function () {
                 });
         });
 
+        it('requires the employee name', function () {
+            return map
+                .init('storage1')
+                .then(function (link) {
+                    return map.enter(null);
+                })
+                .then(function (link) {
+                    throw new Error('link should not have been created');
+                })
+                .catch(function (err) {
+                    err.message.should.be.exactly('employee name is required');
+                });
+        });
+
         it('correctly stores multiple employees', function () {
             return map
                 .init('storage1')

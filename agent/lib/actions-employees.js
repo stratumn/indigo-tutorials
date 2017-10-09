@@ -23,6 +23,10 @@ module.exports = {
    * @param {string} employee - the name of the employee
    */
     enter: function (employee) {
+        if (!employee) {
+            return this.reject('employee name is required');
+        }
+
         // Initialize the employee activity record if needed
         if (!this.state.employees[employee]) {
             this.state.employees[employee] = [];
@@ -43,6 +47,10 @@ module.exports = {
      * @param {string} employee - the name of the employee
      */
     leave: function (employee) {
+        if (!employee) {
+            return this.reject('employee name is required');
+        }
+
         // Initialize the employee activity record if needed
         if (!this.state.employees[employee]) {
             this.state.employees[employee] = [];

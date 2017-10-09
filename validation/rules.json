@@ -19,16 +19,12 @@
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
+                    "items": {
+                        "type": "object"
                     }
                 },
                 "required": [
-                    "id",
-                    "description"
+                    "items"
                 ]
             }
         }
@@ -53,12 +49,12 @@
             "schema": {
                 "type": "object",
                 "properties": {
-                    "employee": {
-                        "type": "string"
+                    "employees": {
+                        "type": "object"
                     }
                 },
                 "required": [
-                    "employee"
+                    "employees"
                 ]
             }
         },
@@ -67,12 +63,12 @@
             "schema": {
                 "type": "object",
                 "properties": {
-                    "employee": {
-                        "type": "string"
+                    "employees": {
+                        "type": "object"
                     }
                 },
                 "required": [
-                    "employee"
+                    "employees"
                 ]
             }
         }

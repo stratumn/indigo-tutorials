@@ -36,6 +36,34 @@ describe('actions-goods', function () {
                 });
         });
 
+        it('requires an id', function () {
+            return map
+                .init('faulty-storage')
+                .then(function (link) {
+                    return map.storeItem(null, 'unknown item');
+                })
+                .then(function (link) {
+                    throw new Error('link should not have been created');
+                })
+                .catch(function (err) {
+                    err.message.should.be.exactly('id is required');
+                });
+        });
+
+        it('requires a description', function () {
+            return map
+                .init('faulty-storage')
+                .then(function (link) {
+                    return map.storeItem('uninteresting-box', null);
+                })
+                .then(function (link) {
+                    throw new Error('link should not have been created');
+                })
+                .catch(function (err) {
+                    err.message.should.be.exactly('description is required');
+                });
+        });
+
         it('cannot store the same item twice', function () {
             return map
                 .init('storage1')

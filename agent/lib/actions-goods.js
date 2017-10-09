@@ -24,6 +24,13 @@ module.exports = {
        * @param {string} description - a description of the item
        */
     storeItem: function (id, description) {
+        if (!id) {
+            return this.reject('id is required');
+        }
+        if (!description) {
+            return this.reject('description is required');
+        }
+
         // Make sure ID doesn't already exist.
         if (this.state.items[id]) {
             return this.reject('this item is already inside the warehouse');
