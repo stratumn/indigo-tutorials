@@ -55,6 +55,9 @@ A web user interface for the Indigo node is also available on
 
 Press `Ctrl^C` to stop the services.
 
+**Note:** You might need to run `tendermint init --home ./tendermint` to
+initialize Tendermint's configuration files.
+
 **Note:** While the agent will automatically restart if a file changes, you will
 have to run `strat up` again if you add NodeJS packages to `package.json`.
 During development, the segments will be saved to the `./segments` directory.
@@ -75,7 +78,7 @@ The agent's files are in the `./agent` directory.
 ### Workflow actions
 
 The actions are defined in `./agent/lib/actions-todo.js`.
-You can arrange your actions in different files then `require()` them if you
+You can arrange your actions in different files then `import` them if you
 want.
 
 ### Tests
@@ -107,7 +110,7 @@ during testing.
 
 ### Validation
 
-There is a json file in `./validation` named `rules.json`. 
+There is a json file in `./validation` named `rules.json`.
 It contains json schema validation rules that are executed for each action your processes handle.
 
 ## License

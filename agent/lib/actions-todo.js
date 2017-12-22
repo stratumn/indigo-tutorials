@@ -1,16 +1,15 @@
-module.exports = {
-
+export default {
   /**
    * Creates a new TODO list.
    * @param {string} title - a name for the list
    */
-  init: function(title) {
+  init(title) {
     // Save the title and initialize an empty map of list items.
     this.state.title = title;
     this.state.items = {};
 
     // Create the first segment.
-    this.append();
+    return this.append();
   },
 
   /**
@@ -18,7 +17,7 @@ module.exports = {
    * @param {string} id - a unique identifier for the item
    * @param {string} description - a description of the item
    */
-  addItem: function(id, description) {
+  addItem(id, description) {
     // Make sure ID doesn't already exist.
     if (this.state.items[id]) {
       return this.reject('item already exists')
@@ -31,14 +30,14 @@ module.exports = {
     };
 
     // Append the new segment.
-    this.append();
+    return this.append();
   },
 
   /**
-   * Completes an item in the TODO list.
+   * Completes an item istratumn-agentn the TODO list.
    * @param {string} id - the unique identifier of the item
    */
-  completeItem: function(id) {
+  completeItem(id) {
     // Find the item.
     var item = this.state.items[id];
 
@@ -56,6 +55,6 @@ module.exports = {
     item.complete = true;
 
     // Append the new segment.
-    this.append();
+    return this.append();
   }
 };

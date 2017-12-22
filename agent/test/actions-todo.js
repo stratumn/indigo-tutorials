@@ -1,36 +1,34 @@
-var processify = require('stratumn-agent').processify;
-var actions = require('../lib/actions-todo');
+import Agent from '@indigoframework/agent';
+import actions from '../lib/actions-todo';
 
-describe('actions-todo', function () {
+describe('actions-todo', () => {
 
   // Transform our actions into a process before every test
-  var map;
-  beforeEach(function () {
-    map = processify(actions);
+  let map;
+
+  beforeEach(() => {
+    map = Agent.processify(actions);
   });
 
-  describe('#init()', function () {
-
-    it('sets the state correctly', function () {
+  describe('#init()', () => {
+    it('sets the state correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           link.state.title.should.be.exactly('TODO');
           link.state.items.should.be.an.Object();
         });
     });
-
   });
 
-  describe('#addItem()', function () {
-
-    it('updates the state correctly', function () {
+  describe('#addItem()', () => {
+    it('updates the state correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('laundry', 'Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           link.state.items.should.deepEqual({
             laundry: {
               description: 'Do laundry!',
@@ -40,37 +38,35 @@ describe('actions-todo', function () {
         });
     });
 
-    it('requires a unique ID', function () {
+    it('requires a unique ID', () => {
       return map
         .init('TODO!')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('laundry', 'Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           return map.addItem('laundry', 'Do laundry again!');
         })
-        .then(function (link) {
+        .then(link => {
           throw new Error('link should not have been created');
         })
-        .catch(function (err) {
+        .catch(err => {
           err.message.should.be.exactly('item already exists');
         });
     });
-
   });
 
-  describe('#completeItem()', function () {
-
-    it('updates the state correctly', function () {
+  describe('#completeItem()', () => {
+    it('updates the state correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('laundry', 'Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           return map.completeItem('laundry');
         })
-        .then(function (link) {
+        .then(link => {
           link.state.items.should.deepEqual({
             laundry: {
               description: 'Do laundry!',
@@ -80,40 +76,38 @@ describe('actions-todo', function () {
         });
     });
 
-    it('requires the item to exist', function () {
+    it('requires the item to exist', () => {
       return map
         .init('TODO!')
-        .then(function (link) {
+        .then(link => {
           return map.completeItem('laundry');
         })
-        .then(function (link) {
+        .then(link => {
           throw new Error('link should not have been created');
         })
-        .catch(function (err) {
+        .catch(err => {
           err.message.should.be.exactly('item not found');
         });
     });
 
-    it('requires the item not to be complete', function () {
+    it('requires the item not to be complete', () => {
       return map
         .init('TODO!')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('laundry', 'Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           return map.completeItem('laundry');
         })
-        .then(function (link) {
+        .then(link => {
           return map.completeItem('laundry');
         })
-        .then(function (link) {
+        .then(link => {
           throw new Error('link should not have been created');
         })
-        .catch(function (err) {
+        .catch(err => {
           err.message.should.be.exactly('item already complete');
         });
     });
-
   });
-
 });

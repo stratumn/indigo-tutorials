@@ -19,16 +19,16 @@
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
+                    "title": {
                         "type": "string"
                     },
-                    "description": {
-                        "type": "string"
+                    "items": {
+                        "type": "object"
                     }
                 },
                 "required": [
-                    "id",
-                    "description"
+                    "title",
+                    "items"
                 ]
             }
         },
@@ -37,12 +37,16 @@
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
+                    "title": {
                         "type": "string"
+                    },
+                    "items": {
+                        "type": "object"
                     }
                 },
                 "required": [
-                    "id"
+                    "title",
+                    "items"
                 ]
             }
         }
