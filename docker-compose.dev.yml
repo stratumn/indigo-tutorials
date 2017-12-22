@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   agentui:
-    image: stratumn/agent-ui:v0.5.0
+    image: indigoframework/agent-ui:0.2.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -9,8 +9,8 @@ services:
     - ./config/dev.secret.env
     ports:
     - "4000:4000"
-  indigoexplorer:
-    image: stratumn/indigo-explorer:v0.8.0
+  tmpopexplorer:
+    image: indigoframework/tmpop-explorer:0.2.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env

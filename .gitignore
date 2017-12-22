@@ -1,5 +1,6 @@
 segments
 tendermint
+tendermint.test
 node_modules
 *.secret.env
 .DS_Store

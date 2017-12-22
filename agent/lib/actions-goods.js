@@ -1,29 +1,23 @@
-module.exports = {
-    events: {
-        didSave: function (segment) {
-            console.log('Segment ' + segment.meta.linkHash + ' was saved!');
-        }
-    },
-
+export default {
     /**
      * Creates a new warehouse goods tracker.
      * @param {string} warehouse - the name of the warehouse
      */
-    init: function (warehouse) {
+    init(warehouse) {
         // Save the warehouse and initialize an empty map of items.
         this.state.warehouse = warehouse;
         this.state.items = {};
 
         // Create the first segment.
-        this.append();
+        return this.append();
     },
 
     /**
-       * Store a new item inside the warehouse.
-       * @param {string} id - a unique identifier for the item
-       * @param {string} description - a description of the item
-       */
-    storeItem: function (id, description) {
+     * Store a new item inside the warehouse.
+     * @param {string} id - a unique identifier for the item
+     * @param {string} description - a description of the item
+     */
+    storeItem(id, description) {
         if (!id) {
             return this.reject('id is required');
         }
@@ -42,6 +36,6 @@ module.exports = {
         };
 
         // Append the new segment.
-        this.append();
+        return this.append();
     },
 };
