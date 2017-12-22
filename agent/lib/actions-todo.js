@@ -1,10 +1,9 @@
-module.exports = {
-
+export default {
   /**
    * Creates a new TODO list.
    * @param {string} title - a name for the list
    */
-  init: function (title) {
+  init(title) {
     // Save the list info.
     this.state = {
       title: title
@@ -14,14 +13,14 @@ module.exports = {
     this.meta.tags = ['list'];
 
     // Create the first segment.
-    this.append();
+    return this.append();
   },
 
   /**
    * Adds an item to the TODO list.
    * @param {string} description - a description of the item
    */
-  addItem: function (description) {
+  addItem(description) {
     // Make sure we are appending a list segment. It should have the `list` tag.
     if (this.meta.tags.indexOf('list') < 0) {
       return this.reject('not a list');
@@ -36,13 +35,13 @@ module.exports = {
     this.meta.tags = ['item'];
 
     // Append the new segment.
-    this.append();
+    return this.append();
   },
 
   /**
    * Completes an item in the TODO list.
    */
-  completeItem: function () {
+  completeItem() {
     // Make sure we are appending an item segment. It should have the `item` tag.
     if (this.meta.tags.indexOf('item') < 0) {
       return this.reject('not an item');
@@ -55,6 +54,6 @@ module.exports = {
     this.meta.tags = ['completion'];
 
     // Append the new segment.
-    this.append();
+    return this.append();
   }
 };

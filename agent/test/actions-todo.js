@@ -1,36 +1,34 @@
-var processify = require('stratumn-agent').processify;
-var actions = require('../lib/actions-todo');
+import Agent from '@indigoframework/agent';
+import actions from '../lib/actions-todo';
 
-describe('actions-todo', function () {
+describe('actions-todo', () => {
 
   // Transform our actions into a process before every test
-  var map;
-  beforeEach(function () {
-    map = processify(actions);
+  let map;
+
+  beforeEach(() => {
+    map = Agent.processify(actions);
   });
 
-  describe('#init()', function () {
-
-    it('sets the state and meta correctly', function () {
+  describe('#init()', () => {
+    it('sets the state and meta correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           link.state.title.should.be.exactly('TODO');
           link.meta.tags.should.deepEqual(['list']);
         });
     });
-
   });
 
-  describe('#addItem()', function () {
-
-    it('updates the state and meta correctly', function () {
+  describe('#addItem()', () => {
+    it('updates the state and meta correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           link.state.should.deepEqual({
             description: 'Do laundry!'
           });
@@ -38,56 +36,52 @@ describe('actions-todo', function () {
         });
     });
 
-    it('must append a list segment', function () {
+    it('must append a list segment', () => {
       return map
         .init('TODO!')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           return map.addItem('Do laundry again!');
         })
-        .then(function (link) {
+        .then(link => {
           throw new Error('link should not have been created');
         })
-        .catch(function (err) {
+        .catch(err => {
           err.message.should.be.exactly('not a list');
         });
     });
-
   });
 
-  describe('#completeItem()', function () {
-
-    it('updates the state and meta correctly', function () {
+  describe('#completeItem()', () => {
+    it('updates the state and meta correctly', () => {
       return map
         .init('TODO')
-        .then(function (link) {
+        .then(link => {
           return map.addItem('Do laundry!');
         })
-        .then(function (link) {
+        .then(link => {
           return map.completeItem();
         })
-        .then(function (link) {
+        .then(link => {
           link.state.should.deepEqual({});
           link.meta.tags.should.deepEqual(['completion']);
         });
     });
 
-    it('must append an item segment', function () {
+    it('must append an item segment', () => {
       return map
         .init('TODO!')
-        .then(function (link) {
+        .then(link => {
           return map.completeItem();
         })
-        .then(function (link) {
+        .then(link => {
           throw new Error('link should not have been created');
         })
-        .catch(function (err) {
+        .catch(err => {
           err.message.should.be.exactly('not an item');
         });
     });
-
   });
-
 });
