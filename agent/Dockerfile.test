@@ -1,1 +1,1 @@
-FROM stratumn/agent-js:dev-alpine-v0.13.0
+FROM indigoframework/agent-js:dev-alpine-0.3.0

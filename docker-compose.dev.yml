@@ -1,7 +1,7 @@
-version: '2'
+version: '3'
 services:
   agentui:
-    image: stratumn/agent-ui:v0.2.6
+    image: indigoframework/agent-ui:0.3.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -9,8 +9,8 @@ services:
     - ./config/dev.secret.env
     ports:
     - "4000:4000"
-  indigoexplorer:
-    image: stratumn/indigo-explorer:v0.3.0
+  tmpopexplorer:
+    image: indigoframework/tmpop-explorer:0.2.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -30,7 +30,7 @@ services:
     env_file:
     - ./config/dev.env
     - ./config/dev.secret.env
-  tmapp:
+  tmnode:
     user: root
     env_file:
     - ./config/dev.env
@@ -39,9 +39,8 @@ services:
     - "46656-46657:46656-46657"
     volumes:
     - ./tendermint:/data/tendermint
-    - ./segments:/var/stratumn/filestore
 networks:
   default:
     driver: bridge
     driver_opts:
-        name: todo_dev
+        name: part4_dev
