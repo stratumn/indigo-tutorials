@@ -1,11 +1,1 @@
-FROM indigoframework/agent-js:0.3.0
-
-ENV PATH "$PATH:/packages/agent-sample/part4/node_modules/.bin"
-
-ADD package.json /packages/agent-sample/part4/package.json
-
-WORKDIR /packages/agent-sample/part4/server
-
-RUN lerna bootstrap && yarn
-
-CMD npm start
+FROM indigocore/agent-js:dev-0.3.0-alpha1

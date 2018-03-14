@@ -5,11 +5,12 @@ export default {
     }
   },
 
-  name: 'addItem',
+  name: "TODO list",
 
   init(title) {
+    console.log("action", title);
     if (!title) {
-      return this.reject('a title is required');
+      return this.reject("a title is required");
     }
 
     this.state = {
@@ -19,20 +20,15 @@ export default {
     return this.append();
   },
 
-  message(body, author) {
-    if (!body) {
-      return this.reject('a body is required');
-    }
-
-    if (!author) {
-      return this.reject('an author is required');
-    }
-
+  addItem(item) {
     this.state = {
-      body: body,
-      author: author
+      item: item
     };
 
+    return this.append();
+  },
+
+  completeItem() {
     return this.append();
   }
 };

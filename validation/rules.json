@@ -1,13 +1,13 @@
 {
-  "testProcess": {
+  "TODO list": {
     "pki": {
-      "charlie@stratumn.com": {
-        "keys": ["TESTKEY2"],
-        "roles": ["employee"]
+      "alice": {
+        "keys": ["8YGnMCma2cIG/dSkOTnkmyOdmwNpWEsR3YuxKzp5Xic="],
+        "roles": ["employee", "manager"]
       },
-      "Dave Gahan": {
-        "keys": ["hmxvE+c9PwGUSEVZQ10RPaTP5SkuTR60pJ+Bhwqih48="],
-        "roles": ["it"]
+      "bob": {
+        "keys": ["sy1BGEJymELsVbppa2rlMTvI5uykrJzFkuYiB2QT4Kk="],
+        "roles": ["employee"]
       }
     },
     "types": {
@@ -15,16 +15,21 @@
         "schema": {
           "type": "object",
           "properties": {
-            "string": {
+            "title": {
               "type": "string"
             }
           }
         },
-        "transitions": [""]
+        "transitions": [""],
+        "signatures": ["manager"]
       },
-      "processing": {
-        "signatures": ["it"],
-        "transitions": ["init", "processing"]
+      "addItem": {
+        "signatures": ["manager"],
+        "transitions": ["init"]
+      },
+      "completeItem": {
+        "signatures": ["employee"],
+        "transitions": ["addItem"]
       }
     }
   }

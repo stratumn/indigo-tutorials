@@ -4,8 +4,8 @@ TODO tutorial series.
 
 ## Requirements
 
-- [Docker >= 1.10](https://www.docker.com/products/docker)
-- [Docker Compose >= 1.6](https://docs.docker.com/compose/install)
+* [Docker >= 1.10](https://www.docker.com/products/docker)
+* [Docker Compose >= 1.6](https://docs.docker.com/compose/install)
 
 Docker Compose is already included in some distributions of Docker.
 

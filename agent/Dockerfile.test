@@ -1,1 +1,1 @@
-FROM indigoframework/agent-js:dev-alpine-0.3.0
+FROM indigocore/agent-js:dev-0.3.0-alpha1

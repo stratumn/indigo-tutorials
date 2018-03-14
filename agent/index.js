@@ -1,32 +1,32 @@
 // This file creates an Express server and mounts the agent on it.
 
-import fs from 'fs';
-import crypto from 'crypto';
-import express from 'express';
-import Agent from '@indigoframework/agent';
+import fs from "fs";
+import crypto from "crypto";
+import express from "express";
+import Agent from "@indigoframework/agent";
 
 const { plugins } = Agent;
 
 // Create an HTTP store client to save segments.
 // Assumes an HTTP store server is available on env.STRATUMN_STORE_URL or http://store:5000.
 const storeHttpClient = Agent.storeHttpClient(
-  process.env.STRATUMN_STORE_URL || 'http://store:5000'
+  process.env.STRATUMN_STORE_URL || "http://store:5000"
 );
 
 const fossilizerHttpClients = [];
 
 // Create an agent.
-const agentUrl = process.env.STRATUMN_AGENT_URL || 'http://agent:3000';
+const agentUrl = process.env.STRATUMN_AGENT_URL || "http://agent:3000";
 const agent = Agent.create({
   agentUrl: agentUrl
 });
 
 // List of plugins used for our process actions
-const processPlugins = [plugins.agentUrl(agentUrl), plugins.actionArgs, plugins.stateHash, plugins.agentVersion];
+const processPlugins = [plugins.agentUrl(agentUrl), plugins.agentVersion];
 
 // Load process actions.
 // Assumes your action files are in ./lib/actions and export a 'name' field.
-fs.readdir('./lib/actions', (err, processFiles) => {
+fs.readdir("./lib/actions", (err, processFiles) => {
   if (err) {
     console.error(`Cannot load process actions: ${err}`);
     return;
@@ -46,12 +46,12 @@ fs.readdir('./lib/actions', (err, processFiles) => {
         storeHttpClient,
         fossilizerHttpClients,
         {
-  plugins: processPlugins
+          plugins: processPlugins
         }
-);
+      );
     } catch (err) {
-  console.error(`Could not load process: ${actions.name}`);
-}
+      console.error(`Could not load process: ${actions.name}`);
+    }
   });
 });
 
@@ -61,10 +61,10 @@ const agentHttpServer = Agent.httpServer(agent, { cors: {} });
 // Create the Express server.
 const app = express();
 
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 
 // Mount agent on the root path of the server.
-app.use('/', agentHttpServer);
+app.use("/", agentHttpServer);
 
 // Create server by binding app and websocket connection
 const server = Agent.websocketServer(app, storeHttpClient);
