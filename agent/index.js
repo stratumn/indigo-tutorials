@@ -28,12 +28,7 @@ const agent = Agent.create({
 agent.addProcess('todo', actions, storeHttpClient, fossilizerHttpClient, {
   salt: process.env.STRATUMN_SALT || Math.random(), // change to a unique salt
   // plugins you want to use
-  plugins: [
-    plugins.agentUrl(agentUrl),
-    plugins.localTime,
-    plugins.actionArgs,
-    plugins.stateHash
-  ]
+  plugins: [plugins.agentUrl(agentUrl), plugins.localTime, plugins.stateHash]
 });
 
 // Creates an HTTP server for the agent with CORS enabled.
