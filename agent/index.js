@@ -20,19 +20,31 @@ const fossilizerHttpClient = null;
 // Creates an agent
 const agentUrl = process.env.STRATUMN_AGENT_URL || 'http://localhost:3000';
 const agent = Agent.create({
-  agentUrl: agentUrl,
+  agentUrl: agentUrl
 });
 
 // Adds a process from a name, its actions, the store client, and the fossilizer client.
 // As many processes as one needs can be added. A different storeHttpClient and fossilizerHttpClient may be used.
-agent.addProcess('goods', actions_goods, storeHttpClient, fossilizerHttpClient, {
-  // plugins you want to use
-  plugins: [plugins.agentUrl(agentUrl), plugins.actionArgs, plugins.stateHash]
-});
-agent.addProcess('employees', actions_employees, storeHttpClient, fossilizerHttpClient, {
-  // plugins you want to use
-  plugins: [plugins.agentUrl(agentUrl), plugins.actionArgs, plugins.stateHash]
-});
+agent.addProcess(
+  'goods',
+  actions_goods,
+  storeHttpClient,
+  fossilizerHttpClient,
+  {
+    // plugins you want to use
+    plugins: [plugins.agentUrl(agentUrl), plugins.stateHash]
+  }
+);
+agent.addProcess(
+  'employees',
+  actions_employees,
+  storeHttpClient,
+  fossilizerHttpClient,
+  {
+    // plugins you want to use
+    plugins: [plugins.agentUrl(agentUrl), plugins.stateHash]
+  }
+);
 
 // Creates an HTTP server for the agent with CORS enabled.
 const agentHttpServer = Agent.httpServer(agent, { cors: {} });
