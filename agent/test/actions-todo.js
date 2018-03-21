@@ -1,8 +1,7 @@
-import Agent from '@indigoframework/agent';
+import Agent from '@indigocore/agent';
 import actions from '../lib/actions-todo';
 
 describe('actions-todo', () => {
-
   // Transform our actions into a process before every test
   let map;
 
@@ -12,12 +11,10 @@ describe('actions-todo', () => {
 
   describe('#init()', () => {
     it('sets the state correctly', () => {
-      return map
-        .init('TODO')
-        .then(link => {
-          link.state.title.should.be.exactly('TODO');
-          link.state.items.should.be.an.Object();
-        });
+      return map.init('TODO').then(link => {
+        link.state.title.should.be.exactly('TODO');
+        link.state.items.should.be.an.Object();
+      });
     });
   });
 

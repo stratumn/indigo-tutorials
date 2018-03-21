@@ -1,54 +1,45 @@
 {
-    "todo": [
-        {
-            "type": "init",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "title"
-                ]
+  "todo": {
+    "types": {
+      "init": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
             }
-        },
-        {
-            "type": "addItem",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "title",
-                    "items"
-                ]
-            }
-        },
-        {
-            "type": "completeItem",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    },
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "title",
-                    "items"
-                ]
-            }
+          },
+          "required": ["title"]
         }
-    ]
+      },
+      "addItem": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "items": {
+              "type": "object"
+            }
+          },
+          "required": ["title", "items"]
+        }
+      },
+      "completeItem": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "items": {
+              "type": "object"
+            }
+          },
+          "required": ["title", "items"]
+        }
+      }
+    }
+  }
 }
