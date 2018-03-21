@@ -1,7 +1,7 @@
 // This file creates an Express server and mounts the agent on it.
 
 import express from 'express';
-import Agent from '@indigoframework/agent';
+import Agent from '@indigocore/agent';
 
 // Load actions.
 import actions_goods from './lib/actions-goods';

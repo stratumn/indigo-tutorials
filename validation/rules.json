@@ -1,76 +1,68 @@
 {
-    "goods": [
-        {
-            "type": "init",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "warehouse": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "warehouse"
-                ]
+  "goods": {
+    "types": {
+      "init": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "warehouse": {
+              "type": "string"
             }
-        },
-        {
-            "type": "storeItem",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "items"
-                ]
-            }
+          },
+          "required": ["warehouse"]
         }
-    ],
-    "employees": [
-        {
-            "type": "init",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "warehouse": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "warehouse"
-                ]
+      },
+      "storeItem": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "object"
             }
-        },
-        {
-            "type": "enter",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "employees": {
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "employees"
-                ]
-            }
-        },
-        {
-            "type": "leave",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "employees": {
-                        "type": "object"
-                    }
-                },
-                "required": [
-                    "employees"
-                ]
-            }
+          },
+          "required": ["items"]
         }
-    ]
+      }
+    }
+  },
+  "employees": {
+    "types": {
+      "init": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "warehouse": {
+              "type": "string"
+            }
+          },
+          "required": ["warehouse"]
+        },
+        "transitions": [""]
+      },
+      "enter": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "employees": {
+              "type": "object"
+            }
+          },
+          "required": ["employees"]
+        },
+        "transitions": ["init"]
+      },
+      "leave": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "employees": {
+              "type": "object"
+            }
+          },
+          "required": ["employees"]
+        },
+        "transitions": ["init", "enter"]
+      }
+    }
+  }
 }
