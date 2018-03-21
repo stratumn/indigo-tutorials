@@ -49,7 +49,7 @@
           },
           "required": ["employees"]
         },
-        "transitions": ["init"]
+        "transitions": ["init", "leave"]
       },
       "leave": {
         "schema": {
@@ -61,7 +61,7 @@
           },
           "required": ["employees"]
         },
-        "transitions": ["init", "enter"]
+        "transitions": ["enter"]
       }
     }
   }
