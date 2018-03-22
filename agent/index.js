@@ -1,7 +1,7 @@
 // This file creates an Express server and mounts the agent on it.
 
 import express from 'express';
-import Agent from '@indigoframework/agent';
+import Agent from '@indigocore/agent';
 
 // Load actions.
 import actions from './lib/actions-todo';
@@ -25,10 +25,10 @@ const agent = Agent.create({
 
 // Adds a process from a name, its actions, the store client, and the fossilizer client.
 // As many processes as one needs can be added. A different storeHttpClient and fossilizerHttpClient may be used.
-agent.addProcess("todo", actions, storeHttpClient, fossilizerHttpClient, {
+agent.addProcess('todo', actions, storeHttpClient, fossilizerHttpClient, {
   salt: process.env.STRATUMN_SALT || Math.random(), // change to a unique salt
   // plugins you want to use
-  plugins: [plugins.agentUrl(agentUrl), plugins.localTime, plugins.actionArgs, plugins.stateHash]
+  plugins: [plugins.agentUrl(agentUrl), plugins.localTime, plugins.stateHash]
 });
 
 // Creates an HTTP server for the agent with CORS enabled.
@@ -45,6 +45,6 @@ app.use('/', agentHttpServer);
 const server = Agent.websocketServer(app, storeHttpClient);
 
 // Start the server.
-server.listen(3000, function () {
+server.listen(3000, function() {
   console.log(`Listening on :${agentUrl}`);
 });

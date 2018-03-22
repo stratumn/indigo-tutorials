@@ -1,32 +1,28 @@
 {
-    "todo": [
-        {
-            "type": "init",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "title": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "title"
-                ]
+  "todo": {
+    "types": {
+      "init": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "string"
             }
-        },
-        {
-            "type": "addItem",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "description": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "description"
-                ]
-            }
+          },
+          "required": ["title"]
         }
-    ]
+      },
+      "addItem": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": ["description"]
+        }
+      }
+    }
+  }
 }
