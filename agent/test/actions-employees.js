@@ -1,4 +1,4 @@
-import Agent from '@indigoframework/agent';
+import Agent from '@indigocore/agent';
 import actions from '../lib/actions-employees';
 
 describe('actions-employees', () => {
