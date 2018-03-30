@@ -3,7 +3,7 @@
 import fs from "fs";
 import crypto from "crypto";
 import express from "express";
-import Agent from "@indigoframework/agent";
+import Agent from "@indigocore/agent";
 
 const { plugins } = Agent;
 

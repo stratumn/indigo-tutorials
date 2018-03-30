@@ -2,11 +2,15 @@
   "TODO list": {
     "pki": {
       "alice": {
-        "keys": ["8YGnMCma2cIG/dSkOTnkmyOdmwNpWEsR3YuxKzp5Xic="],
+        "keys": [
+          "-----BEGIN ED25519 PUBLIC KEY-----\nMCowBQYDK2VwAyEAq5tzjDO478fGHGB+cZAOpIghVm+ps6sWMn3AH2UDM2I=\n-----END ED25519 PUBLIC KEY-----"
+        ],
         "roles": ["employee", "manager"]
       },
       "bob": {
-        "keys": ["sy1BGEJymELsVbppa2rlMTvI5uykrJzFkuYiB2QT4Kk="],
+        "keys": [
+          "-----BEGIN ED25519 PUBLIC KEY-----\nMCowBQYDK2VwAyEAUO+GZuE89tcLcxBNUloDLk4O9BXTCkVIA0tWoAb0NdU=\n-----END ED25519 PUBLIC KEY-----"
+        ],
         "roles": ["employee"]
       }
     },

@@ -12,7 +12,7 @@ services:
     depends_on:
     - store
   store:
-    image: indigocore/tmstore:0.3.0-alpha1
+    image: indigocore/tmstore:0.3.0-rc1
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -20,7 +20,7 @@ services:
     depends_on:
     - tmnode
   tmnode:
-    image: indigocore/filetmpop:0.3.0-alpha1
+    image: indigocore/filetmpop:0.3.0-rc1
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
