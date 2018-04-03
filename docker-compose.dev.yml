@@ -1,7 +1,7 @@
 version: '3'
 services:
   agentui:
-    image: indigocore/agent-ui:0.3.0-rc1
+    image: indigocore/agent-ui:0.3.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env
@@ -10,7 +10,7 @@ services:
     ports:
     - "4000:4000"
   tmpopexplorer:
-    image: indigocore/tmpop-explorer:0.3.0-rc1
+    image: indigocore/tmpop-explorer:0.3.0
     env_file:
     - ./config/common.env
     - ./config/common.secret.env

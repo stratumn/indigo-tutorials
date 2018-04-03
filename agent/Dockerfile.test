@@ -1,1 +1,1 @@
-FROM indigocore/agent-js:dev-0.3.0-rc1
+FROM indigocore/agent-js:dev-0.3.0

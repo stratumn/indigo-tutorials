@@ -1,6 +1,6 @@
 {
   "name": "part4",
-  "version": "0.3.0-rc1",
+  "version": "0.3.0",
   "description": "A basic Javascript agent.",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "Stratumn",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "@indigocore/agent": "^0.3.0-rc1",
+    "@indigocore/agent": "^0.3.0",
     "express": "^4.14.0"
   },
   "devDependencies": {
