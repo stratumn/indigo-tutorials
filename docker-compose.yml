@@ -1,29 +1,29 @@
-version: '3'
+version: "3"
 services:
   agent:
     build:
       context: ./agent
-    image: indigocore/todo-agent-js
+    image: stratumn/todo-agent-js
     env_file:
-    - ./config/common.env
-    - ./config/common.secret.env
+      - ./config/common.env
+      - ./config/common.secret.env
     volumes:
-    - ./agent:/src/server
+      - ./agent:/src/server
     depends_on:
-    - store
+      - store
   store:
-    image: indigocore/tmstore:0.3.0
+    image: stratumn/tmstore:0.3.0
     env_file:
-    - ./config/common.env
-    - ./config/common.secret.env
+      - ./config/common.env
+      - ./config/common.secret.env
     command: [tmstore, -endpoint, "tcp://tmapp:46657"]
     depends_on:
-    - tmapp
+      - tmapp
   tmapp:
-    image: indigocore/filetmpop:0.3.0
+    image: stratumn/filetmpop:0.3.0
     env_file:
-    - ./config/common.env
-    - ./config/common.secret.env
+      - ./config/common.env
+      - ./config/common.secret.env
     command: [filetmpop, -home, "/data/tendermint"]
     volumes:
-    - ./validation:/data/validation
+      - ./validation:/data/validation
