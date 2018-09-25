@@ -11,9 +11,9 @@ Docker Compose is already included in some distributions of Docker.
 
 You can check versions by running:
 
-```
-$ docker version
-$ docker-compose version
+```sh
+docker version
+docker-compose version
 ```
 
 Your installation of Docker must bind containers to `127.0.0.1` in order for the
@@ -23,14 +23,14 @@ are using a recent release of Docker).
 To make sure that it is the case, check that the value of `$DOCKER_HOST`
 (or `%DOCKER_HOST%` on Windows) is not set:
 
-```
-$ echo $DOCKER_HOST # or echo %DOCKER_HOST% on Windows
+```sh
+echo $DOCKER_HOST # or echo %DOCKER_HOST% on Windows
 ```
 
 Also make sure Docker is running properly:
 
-```
-$ docker run hello-world
+```sh
+docker run hello-world
 ```
 
 If your installation of Docker requires `root` permissions, you can add your
@@ -41,8 +41,8 @@ doing so).
 
 To launch all the services locally, run:
 
-```
-$ strat up
+```sh
+stratumn-cli up
 ```
 
 The agent is bound to `http://localhost:3000`. It will automatically restart
@@ -50,7 +50,7 @@ when a file is changed.
 
 A web user interface for the agent is available on `http://localhost:4000`.
 You can use it to test and visualize your workflows.
-A web user interface for the Indigo node is also available on
+A web user interface for the node is also available on
 `http://localhost:8000`. You can use it to explore blocks and view transactions.
 
 Press `Ctrl^C` to stop the services.
@@ -59,7 +59,7 @@ Press `Ctrl^C` to stop the services.
 initialize Tendermint's configuration files.
 
 **Note:** While the agent will automatically restart if a file changes, you will
-have to run `strat up` again if you add NodeJS packages to `package.json`.
+have to run `stratumn-cli up` again if you add NodeJS packages to `package.json`.
 During development, the segments will be saved to the `./segments` directory.
 Make sure Docker is configured to allow mounting that directory.
 Note that the file storage adapter is very slow and only suited for development and
@@ -67,8 +67,8 @@ testing.
 
 ## Run tests
 
-```
-$ strat test
+```sh
+stratumn-cli test
 ```
 
 ## Project structure

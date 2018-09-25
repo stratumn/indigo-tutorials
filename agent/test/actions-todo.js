@@ -1,7 +1,7 @@
-import Agent from '@indigocore/agent';
-import actions from '../lib/actions-todo';
+import Agent from "@stratumn/agent";
+import actions from "../lib/actions-todo";
 
-describe('actions-todo', () => {
+describe("actions-todo", () => {
   // Transform our actions into a process before every test
   let map;
 
@@ -9,101 +9,101 @@ describe('actions-todo', () => {
     map = Agent.processify(actions);
   });
 
-  describe('#init()', () => {
-    it('sets the state correctly', () => {
-      return map.init('TODO').then(link => {
-        link.state.title.should.be.exactly('TODO');
+  describe("#init()", () => {
+    it("sets the state correctly", () => {
+      return map.init("TODO").then(link => {
+        link.state.title.should.be.exactly("TODO");
         link.state.items.should.be.an.Object();
       });
     });
   });
 
-  describe('#addItem()', () => {
-    it('updates the state correctly', () => {
+  describe("#addItem()", () => {
+    it("updates the state correctly", () => {
       return map
-        .init('TODO')
+        .init("TODO")
         .then(link => {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem("laundry", "Do laundry!");
         })
         .then(link => {
           link.state.items.should.deepEqual({
             laundry: {
-              description: 'Do laundry!',
+              description: "Do laundry!",
               complete: false
             }
           });
         });
     });
 
-    it('requires a unique ID', () => {
+    it("requires a unique ID", () => {
       return map
-        .init('TODO!')
+        .init("TODO!")
         .then(link => {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem("laundry", "Do laundry!");
         })
         .then(link => {
-          return map.addItem('laundry', 'Do laundry again!');
+          return map.addItem("laundry", "Do laundry again!");
         })
         .then(link => {
-          throw new Error('link should not have been created');
+          throw new Error("link should not have been created");
         })
         .catch(err => {
-          err.message.should.be.exactly('item already exists');
+          err.message.should.be.exactly("item already exists");
         });
     });
   });
 
-  describe('#completeItem()', () => {
-    it('updates the state correctly', () => {
+  describe("#completeItem()", () => {
+    it("updates the state correctly", () => {
       return map
-        .init('TODO')
+        .init("TODO")
         .then(link => {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem("laundry", "Do laundry!");
         })
         .then(link => {
-          return map.completeItem('laundry');
+          return map.completeItem("laundry");
         })
         .then(link => {
           link.state.items.should.deepEqual({
             laundry: {
-              description: 'Do laundry!',
+              description: "Do laundry!",
               complete: true
             }
           });
         });
     });
 
-    it('requires the item to exist', () => {
+    it("requires the item to exist", () => {
       return map
-        .init('TODO!')
+        .init("TODO!")
         .then(link => {
-          return map.completeItem('laundry');
+          return map.completeItem("laundry");
         })
         .then(link => {
-          throw new Error('link should not have been created');
+          throw new Error("link should not have been created");
         })
         .catch(err => {
-          err.message.should.be.exactly('item not found');
+          err.message.should.be.exactly("item not found");
         });
     });
 
-    it('requires the item not to be complete', () => {
+    it("requires the item not to be complete", () => {
       return map
-        .init('TODO!')
+        .init("TODO!")
         .then(link => {
-          return map.addItem('laundry', 'Do laundry!');
+          return map.addItem("laundry", "Do laundry!");
         })
         .then(link => {
-          return map.completeItem('laundry');
+          return map.completeItem("laundry");
         })
         .then(link => {
-          return map.completeItem('laundry');
+          return map.completeItem("laundry");
         })
         .then(link => {
-          throw new Error('link should not have been created');
+          throw new Error("link should not have been created");
         })
         .catch(err => {
-          err.message.should.be.exactly('item already complete');
+          err.message.should.be.exactly("item already complete");
         });
     });
   });

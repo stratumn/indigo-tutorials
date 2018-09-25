@@ -20,7 +20,7 @@ export default {
   addItem(id, description) {
     // Make sure ID doesn't already exist.
     if (this.state.items[id]) {
-      return this.reject('item already exists')
+      return this.reject("item already exists");
     }
 
     // Insert new item.
@@ -34,7 +34,7 @@ export default {
   },
 
   /**
-   * Completes an item istratumn-agentn the TODO list.
+   * Completes an item in the TODO list.
    * @param {string} id - the unique identifier of the item
    */
   completeItem(id) {
@@ -43,12 +43,12 @@ export default {
 
     // Make sure the item exists.
     if (!item) {
-      return this.reject('item not found');
+      return this.reject("item not found");
     }
 
     // Make sure the item isn't already complete.
     if (item.complete) {
-      return this.reject('item already complete')
+      return this.reject("item already complete");
     }
 
     // Update item.
