@@ -1,47 +1,47 @@
-version: '3'
+version: "3"
 services:
   agentui:
-    image: indigocore/agent-ui:0.3.0
+    image: stratumn/agent-ui:0.3.0
     env_file:
-    - ./config/common.env
-    - ./config/common.secret.env
-    - ./config/dev.env
-    - ./config/dev.secret.env
+      - ./config/common.env
+      - ./config/common.secret.env
+      - ./config/dev.env
+      - ./config/dev.secret.env
     ports:
-    - "4000:4000"
+      - "4000:4000"
   tmpopexplorer:
-    image: indigocore/tmpop-explorer:0.3.0
+    image: stratumn/tmpop-explorer:0.3.0
     env_file:
-    - ./config/common.env
-    - ./config/common.secret.env
-    - ./config/dev.env
-    - ./config/dev.secret.env
+      - ./config/common.env
+      - ./config/common.secret.env
+      - ./config/dev.env
+      - ./config/dev.secret.env
     ports:
-    - "8000:4000"
+      - "8000:4000"
   agent:
     build:
       dockerfile: Dockerfile.dev
     env_file:
-    - ./config/dev.env
-    - ./config/dev.secret.env
+      - ./config/dev.env
+      - ./config/dev.secret.env
     ports:
-    - "3000:3000"
+      - "3000:3000"
   store:
     env_file:
-    - ./config/dev.env
-    - ./config/dev.secret.env
+      - ./config/dev.env
+      - ./config/dev.secret.env
   tmapp:
     user: root
     env_file:
-    - ./config/dev.env
-    - ./config/dev.secret.env
+      - ./config/dev.env
+      - ./config/dev.secret.env
     ports:
-    - "46656-46657:46656-46657"
+      - "46656-46657:46656-46657"
     volumes:
-    - ./tendermint:/data/tendermint
-    - ./segments:/var/stratumn/filestore
+      - ./tendermint:/data/tendermint
+      - ./segments:/var/stratumn/filestore
 networks:
   default:
     driver: bridge
     driver_opts:
-        name: warehouse_dev
+      name: warehouse_dev

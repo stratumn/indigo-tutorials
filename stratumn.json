@@ -4,18 +4,18 @@
   "description": "Warehouse tutorial series.",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "init": "strat run tm:init",
+    "init": "stratumn-cli run tm:init",
     "tm:init": "docker run -it --rm -v \"$(pwd)/tendermint:/tendermint\" tendermint/tendermint:0.11.0 init",
     "tm:init:test": "docker run -it --rm -v \"$(pwd)/tendermint.test:/tendermint\" tendermint/tendermint:0.11.0 init",
     "compose": "docker-compose -p todo-dev -f docker-compose.yml -f docker-compose.dev.yml",
     "compose:test": "docker-compose -p todo-test -f docker-compose.yml -f docker-compose.test.yml",
-    "build": "strat run compose build",
-    "build:test": "strat run compose:test build",
-    "up": "strat run build && strat run compose up",
-    "down": "strat run compose down",
-    "down:test": "strat run compose:test down; rm -rf tendermint.test",
-    "test": "strat run build:test && strat run tm:init:test && strat run compose:test run agent npm test",
-    "pull": "strat run compose pull",
-    "push": "strat run compose push"
+    "build": "stratumn-cli run compose build",
+    "build:test": "stratumn-cli run compose:test build",
+    "up": "stratumn-cli run build && stratumn-cli run compose up",
+    "down": "stratumn-cli run compose down",
+    "down:test": "stratumn-cli run compose:test down; rm -rf tendermint.test",
+    "test": "stratumn-cli run build:test && stratumn-cli run tm:init:test && stratumn-cli run compose:test run agent npm test",
+    "pull": "stratumn-cli run compose pull",
+    "push": "stratumn-cli run compose push"
   }
 }
